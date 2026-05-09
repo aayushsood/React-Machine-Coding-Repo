@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import './itunes.css'
 
 type timeoutIdType = number|undefined;
@@ -9,6 +9,8 @@ interface IShowResults{
     collectionName?:string;
     country?:string;
     currency?:string;
+    trackId?:number;
+    collectionId?:number;
 }
 
 interface IResults {
@@ -27,13 +29,15 @@ const ItunesDebouncedSearchApi = ()=>{
             const results = await fetch(`https://itunes.apple.com/search?term=${query}&limit=10`);
             let theResults:IResults = await results.json();
             const resultArray = theResults.results || [];
-            const data:IShowResults[] = resultArray.map((val:Record<any, string>)=>{
+            const data:IShowResults[] = resultArray.map((val:IShowResults)=>{
                 return {
                    artistName:val.artistName,
                    artistViewUrl:val.artistViewUrl,
                    collectionName:val.collectionName,
                    country:val.country,
-                   currency:val.currency
+                   currency:val.currency,
+                   trackId:val.trackId,
+                   collectionId:val.collectionId
                 }
             })
             setArtistResults([...data]);
@@ -60,7 +64,7 @@ const ItunesDebouncedSearchApi = ()=>{
     }
 
 
-    const debouncedfetchResults = debouncedFetch(fetchResults,500);
+    const debouncedfetchResults = useRef(debouncedFetch(fetchResults,500)).current;
 
     
     
@@ -79,7 +83,7 @@ const ItunesDebouncedSearchApi = ()=>{
 
     <div className='container'>
         {
-            artistResults.map((val)=><div className='miniContainer'>
+            artistResults.map((val)=><div key={`${val.trackId}${val.collectionId}`} className='miniContainer'>
 
                 <div className='inside_container'>
                     <p>Artist Name:</p> <h5>{val.artistName}</h5>
