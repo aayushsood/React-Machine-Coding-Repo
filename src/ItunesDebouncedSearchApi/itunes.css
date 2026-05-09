@@ -1,0 +1,41 @@
+*{
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+h1{
+    margin: 20px;
+}
+
+.input_itunes{
+    padding: 10px;
+    width: 25%;
+    margin: 20px;
+}
+
+.container{
+    display: flex;
+    justify-content: flex-start;
+    max-width: 100vw;
+    flex-wrap: wrap;
+}
+
+.inside_container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+    width: 100%;
+}
+
+.miniContainer{
+    width:calc(50% - 20px) ;
+    padding: 20px;
+    background-color: cornsilk;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+
