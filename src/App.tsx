@@ -1,11 +1,11 @@
 // import { useState } from 'react'
 
-import ItunesDebouncedSearchApi from "./ItunesDebouncedSearchApi/ItunesDebouncedSearchApi"
+import InfiniteScroll from "./InfiniteScroll/InfiniteScroll"
 
 function App() {
 
   return (
-    <ItunesDebouncedSearchApi/> 
+    <InfiniteScroll/>
   )
 }
 
