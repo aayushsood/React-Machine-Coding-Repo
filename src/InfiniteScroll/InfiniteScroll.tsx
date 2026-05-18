@@ -1,5 +1,6 @@
-import { useRef, useEffect , useState, useCallback} from "react";
+import { useRef, useEffect , useState, useCallback, useContext} from "react";
 import "./InfiniteScroll.css"
+import { ToastContext } from '../ContextProviders/UniversalToatProvider';
 
 interface IResultObject{
     id:number;
@@ -22,6 +23,7 @@ interface IResponse{
 
 
 const InfiniteScroll:React.FC = ()=>{
+    const {setShowToast, setProperties} = useContext(ToastContext);
     const lastDiv = useRef<HTMLDivElement>(null);
 
     const [pageNumber, setPageNumber] = useState<number>(1);
@@ -33,6 +35,7 @@ const InfiniteScroll:React.FC = ()=>{
 
 
 const fetchRickAndMorty = useCallback(async ():Promise<void> =>{
+    
     if(isFetching.current) return;
     isFetching.current=true;
     setLoading(true);
@@ -56,7 +59,14 @@ try{
     }));
 
     setResults((prev)=>[...prev,...data]);
+    setShowToast(true);
+    setProperties({
+        message: "Data fetched successfully",
+    });
 }catch(err){
+    setProperties({
+        message: "Something went wrong",
+    });
     setIsError(true);
 }finally{
     isFetching.current=false;
