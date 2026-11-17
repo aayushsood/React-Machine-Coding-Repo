@@ -1,0 +1,64 @@
+.kanbanBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.inputBox {
+  padding: 0.8rem;
+  width: 33%;
+}
+
+.select {
+  padding: 0.8rem;
+  width: 10rem;
+}
+
+option {
+  text-align: center;
+}
+
+.addBtn {
+  padding: 0.8rem;
+  width: 5rem;
+  text-align: center;
+}
+
+.taskBoard {
+  display: flex;
+
+  justify-content: space-around;
+  margin: 1rem;
+  border: 4px solid black;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.singleBox {
+  border: 2px solid black;
+  border-radius: 5px;
+  text-align: center;
+  width: 30%;
+}
+
+.headerStyle {
+  border-bottom: 1px solid black;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.taskStyle {
+  text-align: center;
+  padding: 1rem;
+  background-color: lightgrey;
+  margin: 0.5rem;
+  border-radius: 5px;
+  cursor: grab;
+}
+
+.taskStyle:hover {
+  background-color: lightblue;
+  transform: translateY(-2px);
+  cursor: grab;
+}
