@@ -73,18 +73,12 @@ const KanbanBoard: React.FC = () => {
     setTask("");
   };
 
-  const handleDragStart = (
-    e: React.DragEvent<HTMLDivElement>,
-    id: string,
-    sourceColumn: keyof IColumns,
-  ) => {
+  const handleDragStart = (id: string, sourceColumn: keyof IColumns) => {
     draggedRef.current = { id, sourceColumn };
-    e.dataTransfer.effectAllowed = "move";
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    e.dataTransfer.dropEffect = "move";
   };
 
   const handleDropEnd = (
@@ -174,8 +168,8 @@ const KanbanBoard: React.FC = () => {
               {columns[val].items.map((item) => {
                 return (
                   <p
-                    onDragStart={(e) => {
-                      handleDragStart(e, item.id, val);
+                    onDragStart={() => {
+                      handleDragStart(item.id, val);
                     }}
                     draggable
                     key={item.id}
